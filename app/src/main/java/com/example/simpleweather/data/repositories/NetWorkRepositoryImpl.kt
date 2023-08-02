@@ -27,8 +27,13 @@ class NetWorkRepositoryImpl(private val locationClient: LocationClient) : Networ
                 lat = lat,
                 lon = lon,
                 name = name,
-                state = state
+                state = state,
+                flagImageSrc = getFlagSrc(countryCode = country)
             )
         }
     }
+
+    fun getFlagSrc(countryCode: String): String =
+       "https://raw.githubusercontent.com/alexxk2/SimpleWeather/ae6217f45da789156459a81b4c00583f04d8972c/app/src/main/res/drawable/${countryCode.lowercase()}.png"
+
 }

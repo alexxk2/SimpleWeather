@@ -24,8 +24,8 @@
         app:endIconCheckable="true"
         app:endIconDrawable="@drawable/ic_clear"
         app:endIconMode="clear_text"
-        app:hintAnimationEnabled="true"
         app:expandedHintEnabled="true"
+        app:hintAnimationEnabled="true"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/search_edit_text_background"
-            android:inputType="text"
             android:imeOptions="actionGo"
+            android:inputType="text"
             android:padding="0dp"
             android:textSize="14sp" />
 
@@ -54,9 +54,46 @@
         app:layout_constraintEnd_toEndOf="@id/search_layout"
         app:layout_constraintStart_toStartOf="@id/search_layout"
         app:layout_constraintTop_toBottomOf="@id/search_layout"
-        tools:listitem="@layout/search_item"
         tools:itemCount="5"
-        />
+        tools:listitem="@layout/search_item" />
 
+    <LinearLayout
+        android:id="@+id/not_found_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/image_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/not_found"
+            android:src="@drawable/ic_nothing_is_found" />
+
+        <TextView
+            android:id="@+id/text_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nothing_is_found"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

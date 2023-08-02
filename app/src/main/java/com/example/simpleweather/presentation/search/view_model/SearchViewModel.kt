@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.domain.models.CityInfo
 import com.example.simpleweather.domain.use_cases.GetCityLocationUseCase
+import com.example.simpleweather.presentation.search.models.SearchStatus
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -16,24 +17,23 @@ class SearchViewModel(
     private val _cityInfo = MutableLiveData<List<CityInfo>>()
     val cityInfo: LiveData<List<CityInfo>> = _cityInfo
 
+    private val _searchState = MutableLiveData<SearchStatus>()
+    val searchState: LiveData<SearchStatus> = _searchState
 
     fun getCityLocation(name: String) {
+        _searchState.value = SearchStatus.Loading
         viewModelScope.launch {
 
             try {
                 _cityInfo.value = getCityLocationUseCase.execute(name = name)
+
+                if (cityInfo.value?.isEmpty() == true) {
+                    _searchState.value = SearchStatus.Error
+                } else _searchState.value = SearchStatus.Done
+
             } catch (e: Exception) {
-                _cityInfo.value = listOf(
-                    CityInfo(
-                        country = "empty",
-                        lat = 0.0,
-                        lon = 0.0,
-                        name = "empty",
-                        state = "empty"
-                    )
-                )
+                _searchState.value = SearchStatus.Error
             }
         }
     }
-
 }

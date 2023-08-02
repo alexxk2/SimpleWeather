@@ -6,5 +6,9 @@
     <string name="flag">flag</string>
     <string name="search">Search</string>
     <string name="city_info">%1$s • %2$s</string>
+    <string name="not_found">not found</string>
+    <string name="nothing_is_found">Nothing is found</string>
+    <string name="back_button">back button</string>
+    <string name="weather_image">weather image</string>
 
 </resources>

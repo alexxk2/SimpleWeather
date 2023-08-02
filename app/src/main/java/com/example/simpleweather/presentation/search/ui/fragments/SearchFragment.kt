@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simpleweather.databinding.FragmentSearchBinding
 import com.example.simpleweather.domain.models.CityInfo
+import com.example.simpleweather.presentation.search.models.SearchStatus
 import com.example.simpleweather.presentation.search.ui.adapters.SearchAdapter
 import com.example.simpleweather.presentation.search.view_model.SearchViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,8 +22,6 @@ class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModel()
     private lateinit var searchAdapter: SearchAdapter
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +53,19 @@ class SearchFragment : Fragment() {
                 else -> false
             }
         }
+
         viewModel.cityInfo.observe(viewLifecycleOwner){
             searchAdapter.submitList(it)
         }
 
+        viewModel.searchState.observe(viewLifecycleOwner){searchState->
+
+            when(searchState){
+                SearchStatus.Done -> showContent()
+                SearchStatus.Error -> showError()
+                SearchStatus.Loading -> showLoading()
+            }
+        }
     }
 
     private fun setRecyclerView(){
@@ -71,6 +79,30 @@ class SearchFragment : Fragment() {
         binding.recyclerView.adapter = searchAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
+    }
+
+    private fun showContent(){
+        with(binding){
+            notFoundLayout.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showError(){
+        with(binding){
+            notFoundLayout.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.GONE
+        }
+    }
+
+    private fun showLoading(){
+        with(binding){
+            notFoundLayout.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        }
     }
 
 

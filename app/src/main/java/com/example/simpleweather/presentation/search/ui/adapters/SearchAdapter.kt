@@ -38,7 +38,8 @@ class SearchAdapter(
         val cityInfoPrepared = context.getString(R.string.city_info, item.name, item.country)
 
         Glide.with(context)
-            .load("https://raw.githubusercontent.com/alexxk2/CurrencyConverter/e2e52160395ee9aeae238b6c765073771db358fe/app/src/main/res/drawable/au.png")
+            .load(item.flagImageSrc)
+            .placeholder(R.drawable.ic_flag_not_found)
             .into(holder.binding.flagImage)
 
         with(holder.binding) {
