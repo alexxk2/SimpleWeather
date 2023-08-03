@@ -18,5 +18,6 @@
 
     <color name="soft_black">#353535</color>
     <color name="soft_white">#F8F8F8</color>
+    <color name="ic_launcher_new_background">#91CBFA</color>
 
 </resources>
