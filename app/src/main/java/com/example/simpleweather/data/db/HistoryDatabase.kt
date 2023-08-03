@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.simpleweather.data.db.dto.HistoryItemDto
 
 
-@Database(entities = [HistoryDao::class], version = 1, exportSchema = false)
+@Database(entities = [HistoryItemDto::class], version = 1, exportSchema = false)
 abstract class HistoryDatabase : RoomDatabase() {
 
     abstract fun historyDao(): HistoryDao

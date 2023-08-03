@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.simpleweather.domain.models.CityInfo
 import com.example.simpleweather.domain.models.WeatherInfo
 import com.example.simpleweather.domain.use_cases.network.GetWeatherInfoUseCase
 import com.example.simpleweather.domain.use_cases.storage.AddNewHistoryItemUseCase
@@ -22,16 +23,26 @@ class InfoViewModel(
     val searchState: LiveData<SearchStatus> = _searchState
 
 
+
+
     fun getWeatherInfo(lat: Double, lon: Double){
         _searchState.value = SearchStatus.Loading
         viewModelScope.launch {
             try {
                 _weatherInfo.value = getWeatherInfoUseCase.execute(lat = lat, lon = lon)
                 _searchState.value = SearchStatus.Done
+
             }
             catch (e:Exception){
                 _searchState.value = SearchStatus.Error
             }
+        }
+
+    }
+
+    fun addNewItemToHistory(cityInfo: CityInfo){
+        viewModelScope.launch {
+            addNewHistoryItemUseCase.execute(cityInfo = cityInfo,weatherInfo = _weatherInfo.value!!)
         }
 
     }

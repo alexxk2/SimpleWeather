@@ -38,7 +38,7 @@ class SearchAdapter(
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val item = getItem(position)
 
-        val simpleDate = SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault())
+        val simpleDate = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault())
 
         val cityInfoPrepared = if (item.dt == null){
              context.getString(R.string.city_info, item.name, item.country)

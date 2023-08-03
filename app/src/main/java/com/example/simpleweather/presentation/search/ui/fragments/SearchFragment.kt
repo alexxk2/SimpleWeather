@@ -45,6 +45,8 @@ class SearchFragment : Fragment() {
 
         setRecyclerView()
 
+        viewModel.getAllHistory()
+
         binding.searchEditText.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_GO -> {
@@ -65,6 +67,7 @@ class SearchFragment : Fragment() {
                 SearchStatus.Done -> showContent()
                 SearchStatus.Error -> showError()
                 SearchStatus.Loading -> showLoading()
+                SearchStatus.History -> showHistory()
             }
         }
     }
@@ -88,6 +91,7 @@ class SearchFragment : Fragment() {
             notFoundLayout.visibility = View.GONE
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
+            historyTitle.visibility = View.GONE
         }
     }
 
@@ -96,6 +100,7 @@ class SearchFragment : Fragment() {
             notFoundLayout.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.GONE
+            historyTitle.visibility = View.GONE
         }
     }
 
@@ -104,6 +109,16 @@ class SearchFragment : Fragment() {
             notFoundLayout.visibility = View.GONE
             progressBar.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
+            historyTitle.visibility = View.GONE
+        }
+    }
+
+    private fun showHistory(){
+        with(binding){
+            notFoundLayout.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            historyTitle.visibility = View.VISIBLE
         }
     }
 

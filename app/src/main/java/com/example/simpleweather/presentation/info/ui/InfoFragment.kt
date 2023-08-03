@@ -74,9 +74,13 @@ class InfoFragment : Fragment() {
 
         viewModel.searchState.observe(viewLifecycleOwner) { state ->
             when (state) {
-                SearchStatus.Done -> showContent()
+                SearchStatus.Done -> {
+                    showContent()
+                    viewModel.addNewItemToHistory(cityInfo)
+                }
                 SearchStatus.Error -> showError()
                 SearchStatus.Loading -> showLoading()
+                else -> {}
             }
         }
 

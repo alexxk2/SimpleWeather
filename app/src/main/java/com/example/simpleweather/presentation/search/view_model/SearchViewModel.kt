@@ -40,4 +40,18 @@ class SearchViewModel(
             }
         }
     }
+
+    fun getAllHistory(){
+        _searchState.value = SearchStatus.Loading
+        viewModelScope.launch {
+
+            try {
+                _cityInfo.value = getAllHistoryItemsUseCase.execute()
+                _searchState.value = SearchStatus.History
+
+            } catch (e: Exception) {
+                _searchState.value = SearchStatus.Error
+            }
+        }
+    }
 }
