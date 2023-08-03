@@ -4,5 +4,5 @@ import com.example.simpleweather.domain.repositories.StorageRepository
 
 class DeleteAllHistoryItemsUseCase(private val storageRepository: StorageRepository) {
 
-    private suspend fun execute() = storageRepository.deleteAllHistoryItems()
+     suspend fun execute() = storageRepository.deleteAllHistoryItems()
 }

@@ -68,7 +68,18 @@ class SearchFragment : Fragment() {
                 SearchStatus.Error -> showError()
                 SearchStatus.Loading -> showLoading()
                 SearchStatus.History -> showHistory()
+                SearchStatus.Intro -> showIntro()
             }
+        }
+
+        binding.cleanHistoryButton.setOnClickListener {
+            viewModel.clearHistory()
+            viewModel.getAllHistory()
+        }
+
+        binding.searchLayout.setEndIconOnClickListener {
+            binding.searchEditText.setText("")
+            viewModel.getAllHistory()
         }
     }
 
@@ -92,6 +103,8 @@ class SearchFragment : Fragment() {
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
             historyTitle.visibility = View.GONE
+            cleanHistoryButton.visibility = View.INVISIBLE
+            introLayout.visibility = View.GONE
         }
     }
 
@@ -101,6 +114,8 @@ class SearchFragment : Fragment() {
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.GONE
             historyTitle.visibility = View.GONE
+            cleanHistoryButton.visibility = View.INVISIBLE
+            introLayout.visibility = View.GONE
         }
     }
 
@@ -110,6 +125,8 @@ class SearchFragment : Fragment() {
             progressBar.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
             historyTitle.visibility = View.GONE
+            cleanHistoryButton.visibility = View.INVISIBLE
+            introLayout.visibility = View.GONE
         }
     }
 
@@ -119,6 +136,20 @@ class SearchFragment : Fragment() {
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
             historyTitle.visibility = View.VISIBLE
+            cleanHistoryButton.visibility = View.VISIBLE
+            introLayout.visibility = View.GONE
+        }
+    }
+
+    private fun showIntro(){
+        with(binding){
+            notFoundLayout.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.GONE
+            historyTitle.visibility = View.GONE
+            cleanHistoryButton.visibility = View.INVISIBLE
+            introLayout.visibility = View.VISIBLE
+
         }
     }
 

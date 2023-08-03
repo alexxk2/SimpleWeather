@@ -5,4 +5,5 @@ sealed interface SearchStatus {
     object Done : SearchStatus
     object Error : SearchStatus
     object History: SearchStatus
+    object Intro: SearchStatus
 }

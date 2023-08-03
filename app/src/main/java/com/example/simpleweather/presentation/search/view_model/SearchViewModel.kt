@@ -24,6 +24,18 @@ class SearchViewModel(
     private val _searchState = MutableLiveData<SearchStatus>()
     val searchState: LiveData<SearchStatus> = _searchState
 
+    init {
+
+       viewModelScope.launch {
+           if (getAllHistoryItemsUseCase.execute().isEmpty()){
+               _searchState.value = SearchStatus.Intro
+           }
+           else{
+               _searchState.value = SearchStatus.History
+           }
+       }
+    }
+
     fun getCityLocation(name: String) {
         _searchState.value = SearchStatus.Loading
         viewModelScope.launch {
@@ -47,7 +59,24 @@ class SearchViewModel(
 
             try {
                 _cityInfo.value = getAllHistoryItemsUseCase.execute()
-                _searchState.value = SearchStatus.History
+                if(_cityInfo.value?.isEmpty() == true){
+                    _searchState.value = SearchStatus.Intro
+                } else{
+                    _searchState.value = SearchStatus.History
+                }
+
+            } catch (e: Exception) {
+                _searchState.value = SearchStatus.Error
+            }
+        }
+    }
+
+    fun clearHistory(){
+        _searchState.value = SearchStatus.Loading
+        viewModelScope.launch {
+            try {
+                deleteAllHistoryItemsUseCase.execute()
+                _searchState.value = SearchStatus.Done
 
             } catch (e: Exception) {
                 _searchState.value = SearchStatus.Error

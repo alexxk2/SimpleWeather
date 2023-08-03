@@ -39,12 +39,16 @@ class SearchAdapter(
         val item = getItem(position)
 
         val simpleDate = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault())
+        val cityInfoName = context.getString(R.string.city_info)
 
-        val cityInfoPrepared = if (item.dt == null){
-             context.getString(R.string.city_info, item.name, item.country)
-        }
-        else{
-             context.getString(R.string.city_info_plus_date, item.name, item.country, simpleDate.format(Date(item.dt*1000L)))
+        if (item.dt == null) {
+            holder.binding.date.text = ""
+
+        } else {
+            holder.binding.date.text = context.getString(
+                R.string.history_item_date,
+                simpleDate.format(Date(item.dt * 1000L))
+            )
         }
 
         Glide.with(context)
@@ -53,7 +57,8 @@ class SearchAdapter(
             .into(holder.binding.flagImage)
 
         with(holder.binding) {
-            cityName.text = cityInfoPrepared
+
+            cityName.text = context.getString(R.string.city_info,item.name,item.country)
             cityName.tag = item
             root.tag = item
         }
