@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".presentation.search.ui.fragments.SearchFragment">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_layout"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/search"
+        android:textColorHint="@color/grey"
+        app:boxCornerRadiusBottomEnd="24dp"
+        app:boxCornerRadiusBottomStart="24dp"
+        app:boxCornerRadiusTopEnd="24dp"
+        app:boxCornerRadiusTopStart="24dp"
+        app:boxStrokeColor="@color/black"
+        app:endIconCheckable="true"
+        app:endIconDrawable="@drawable/ic_clear"
+        app:endIconMode="clear_text"
+        app:expandedHintEnabled="true"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/grey">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/search_edit_text_background"
+            android:imeOptions="actionGo"
+            android:saveEnabled="false"
+            android:inputType="text"
+            android:padding="0dp"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/history_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/you_searched_for"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/search_layout"
+        app:layout_constraintStart_toStartOf="@+id/search_layout"
+        app:layout_constraintTop_toBottomOf="@+id/search_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/clean_history_button"
+        app:layout_constraintEnd_toEndOf="@id/search_layout"
+        app:layout_constraintStart_toStartOf="@id/search_layout"
+        app:layout_constraintTop_toBottomOf="@id/search_layout"
+        tools:itemCount="5"
+        tools:listitem="@layout/search_item" />
+
+    <Button
+        android:id="@+id/clean_history_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/clean_history"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/not_found_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/not_found"
+            android:src="@drawable/ic_nothing_is_found" />
+
+        <TextView
+            android:id="@+id/text_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nothing_is_found"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/intro_layout"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/intro"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_intro_cloud"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/intro_text"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
