@@ -3,7 +3,7 @@ package com.example.simpleweather.data.repositories
 import com.example.simpleweather.data.location.LocationClient
 import com.example.simpleweather.data.location.dto.CityInfoDto
 import com.example.simpleweather.data.weather.WeatherClient
-import com.example.simpleweather.data.weather.dto.WeatherInfoDto
+import com.example.simpleweather.data.weather.dto.WeatherDto
 import com.example.simpleweather.domain.models.CityInfo
 import com.example.simpleweather.domain.models.WeatherInfo
 import com.example.simpleweather.domain.repositories.NetworkRepository
@@ -35,20 +35,22 @@ class NetWorkRepositoryImpl(
                 lon = lon,
                 name = name,
                 state = state,
-                flagImageSrc = getFlagSrc(countryCode = country)
+                flagImageSrc = getFlagSrc(countryCode = country),
+                dt = null
             )
         }
     }
 
-    private fun mapWeatherInfoToDomain(weatherInfoDto: WeatherInfoDto): WeatherInfo {
-        with(weatherInfoDto) {
+    private fun mapWeatherInfoToDomain(weatherDto: WeatherDto): WeatherInfo {
+        with(weatherDto) {
             return WeatherInfo(
-                feels_like = current.feels_like,
-                humidity = current.humidity,
-                pressure = current.pressure,
-                temp = current.temp,
-                wind_speed = current.wind_speed,
-                weatherImage = getWeatherIconSrc(current.weather.first().icon),
+                feels_like = main.feels_like,
+                humidity = main.humidity,
+                pressure = main.pressure,
+                temp = main.temp,
+                wind_speed = wind.speed,
+                weatherImage = getWeatherIconSrc(weather.first().icon),
+                dt = dt
             )
         }
 

@@ -5,13 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.domain.models.CityInfo
-import com.example.simpleweather.domain.use_cases.GetCityLocationUseCase
+import com.example.simpleweather.domain.use_cases.network.GetCityLocationUseCase
+import com.example.simpleweather.domain.use_cases.storage.DeleteAllHistoryItemsUseCase
+import com.example.simpleweather.domain.use_cases.storage.GetAllHistoryItemsUseCase
 import com.example.simpleweather.presentation.search.models.SearchStatus
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class SearchViewModel(
-    private val getCityLocationUseCase: GetCityLocationUseCase
+    private val getCityLocationUseCase: GetCityLocationUseCase,
+    private val getAllHistoryItemsUseCase: GetAllHistoryItemsUseCase,
+    private val deleteAllHistoryItemsUseCase: DeleteAllHistoryItemsUseCase
 ) : ViewModel() {
 
     private val _cityInfo = MutableLiveData<List<CityInfo>>()

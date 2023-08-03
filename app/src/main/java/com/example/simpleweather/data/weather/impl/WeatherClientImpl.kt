@@ -1,9 +1,8 @@
 package com.example.simpleweather.data.weather.impl
 
-import com.example.simpleweather.data.location.LocationApiService
 import com.example.simpleweather.data.weather.WeatherApiService
 import com.example.simpleweather.data.weather.WeatherClient
-import com.example.simpleweather.data.weather.dto.WeatherInfoDto
+import com.example.simpleweather.data.weather.dto.WeatherDto
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -21,7 +20,7 @@ class WeatherClientImpl : WeatherClient {
     }
 
 
-    override suspend fun getWeatherInfo(lat: Double, lon: Double): WeatherInfoDto {
+    override suspend fun getWeatherInfo(lat: Double, lon: Double): WeatherDto {
         return retrofitService.getWeatherInfo(
             lat = lat,
             lon = lon

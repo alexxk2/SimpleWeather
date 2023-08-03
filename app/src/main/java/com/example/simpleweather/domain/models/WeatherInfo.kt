@@ -6,5 +6,6 @@ data class WeatherInfo(
     val pressure: Int,
     val temp: Double,
     val wind_speed: Double,
-    val weatherImage: String
+    val weatherImage: String,
+    val dt: Int
 )

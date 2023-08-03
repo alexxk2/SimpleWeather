@@ -10,5 +10,6 @@ data class CityInfo(
     val lon: Double,
     val name: String,
     val state: String,
-    val flagImageSrc: String
+    val flagImageSrc: String,
+    val dt: Int?
 ): Parcelable

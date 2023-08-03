@@ -6,9 +6,18 @@
     <string name="flag">flag</string>
     <string name="search">Search</string>
     <string name="city_info">%1$s • %2$s</string>
+    <string name="city_info_plus_date">%1$s • %2$s • %3$s</string>
     <string name="not_found">not found</string>
     <string name="nothing_is_found">Nothing is found</string>
+    <string name="weather_search_error">Nothing is found.Try again with a different request</string>
     <string name="back_button">back button</string>
     <string name="weather_image">weather image</string>
+
+    <string name="temperature">Temperature: %1$s C°</string>
+    <string name="temperature_feels_like">Temperature feels like: %1$s C° </string>
+    <string name="pressure">Pressure: %1$s hPa</string>
+    <string name="humidity">Humidity: %1$s percent</string>
+    <string name="wind_speed">Wind speed: %1$s m/s</string>
+    <string name="you_searched_for">You searched for</string>
 
 </resources>

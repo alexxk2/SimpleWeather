@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simpleweather.databinding.FragmentSearchBinding
 import com.example.simpleweather.domain.models.CityInfo
@@ -72,7 +73,8 @@ class SearchFragment : Fragment() {
         searchAdapter = SearchAdapter(requireContext(), object :SearchAdapter.SearchActionListener{
 
             override fun onClickItem(cityInfo: CityInfo) {
-
+                val action = SearchFragmentDirections.actionSearchFragmentToInfoFragment(cityInfo)
+                findNavController().navigate(action)
             }
         })
 

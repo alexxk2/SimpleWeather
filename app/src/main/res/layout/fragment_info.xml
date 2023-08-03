@@ -25,9 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/back_button"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/flag_image"
         app:layout_constraintTop_toBottomOf="@id/back_button"
         tools:text="Moscow" />
 
@@ -91,6 +92,15 @@
         app:layout_constraintBottom_toBottomOf="@id/city_name"
         android:contentDescription="@string/weather_image" />
 
+    <ImageView
+        android:id="@+id/flag_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/weather_image"
+        app:layout_constraintBottom_toBottomOf="@id/city_name"
+        app:layout_constraintStart_toStartOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="@id/city_name" />
+
 
     <LinearLayout
         android:id="@+id/not_found_layout"
@@ -112,10 +122,12 @@
             android:src="@drawable/ic_nothing_is_found" />
 
         <TextView
+            android:textAlignment="center"
+            android:padding="14dp"
             android:id="@+id/text_not_found"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nothing_is_found"
+            android:text="@string/weather_search_error"
             android:textSize="20sp" />
 
     </LinearLayout>

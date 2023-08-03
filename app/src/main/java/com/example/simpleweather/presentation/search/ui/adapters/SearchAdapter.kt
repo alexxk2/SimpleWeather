@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.simpleweather.R
 import com.example.simpleweather.databinding.SearchItemBinding
 import com.example.simpleweather.domain.models.CityInfo
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SearchAdapter(
     private val context: Context,
@@ -35,7 +37,15 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val item = getItem(position)
-        val cityInfoPrepared = context.getString(R.string.city_info, item.name, item.country)
+
+        val simpleDate = SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault())
+
+        val cityInfoPrepared = if (item.dt == null){
+             context.getString(R.string.city_info, item.name, item.country)
+        }
+        else{
+             context.getString(R.string.city_info_plus_date, item.name, item.country, simpleDate.format(Date(item.dt*1000L)))
+        }
 
         Glide.with(context)
             .load(item.flagImageSrc)
@@ -44,8 +54,10 @@ class SearchAdapter(
 
         with(holder.binding) {
             cityName.text = cityInfoPrepared
-
+            cityName.tag = item
+            root.tag = item
         }
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.simpleweather.domain.use_cases
+package com.example.simpleweather.domain.use_cases.network
 
 import com.example.simpleweather.domain.models.CityInfo
 import com.example.simpleweather.domain.repositories.NetworkRepository

@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.domain.models.WeatherInfo
-import com.example.simpleweather.domain.use_cases.GetWeatherInfoUseCase
+import com.example.simpleweather.domain.use_cases.network.GetWeatherInfoUseCase
+import com.example.simpleweather.domain.use_cases.storage.AddNewHistoryItemUseCase
 import com.example.simpleweather.presentation.search.models.SearchStatus
 import kotlinx.coroutines.launch
 
 class InfoViewModel(
-    private val getWeatherInfoUseCase: GetWeatherInfoUseCase
+    private val getWeatherInfoUseCase: GetWeatherInfoUseCase,
+    private val addNewHistoryItemUseCase: AddNewHistoryItemUseCase
 ): ViewModel() {
 
     private val _weatherInfo = MutableLiveData<WeatherInfo>()
