@@ -1,5 +1,9 @@
 package com.example.simpleweather.domain.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CityInfo(
     val country: String,
     val lat: Double,
@@ -7,4 +11,4 @@ data class CityInfo(
     val name: String,
     val state: String,
     val flagImageSrc: String
-)
+): Parcelable

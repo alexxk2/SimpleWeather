@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.simpleweather.databinding.FragmentInfoBinding
+import com.example.simpleweather.presentation.info.view_model.InfoViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class InfoFragment : Fragment() {
 
     private var _binding: FragmentInfoBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: InfoViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
