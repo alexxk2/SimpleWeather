@@ -1,5 +1,6 @@
 package com.example.simpleweather.di
 
+import com.example.simpleweather.data.db.HistoryDatabase
 import com.example.simpleweather.data.db.RoomStorage
 import com.example.simpleweather.data.db.impl.RoomStorageImpl
 import com.example.simpleweather.data.location.LocationClient
@@ -25,7 +26,9 @@ val dataModule = module {
         )
     }
 
-    single<RoomStorage> { RoomStorageImpl(context = get()) }
+    single<RoomStorage> { RoomStorageImpl(context = get(), historyDatabase = get()) }
 
     single<StorageRepository> {StorageRepositoryImpl(roomStorage = get())  }
+
+    single<HistoryDatabase> { HistoryDatabase.getDataBase(get())  }
 }
