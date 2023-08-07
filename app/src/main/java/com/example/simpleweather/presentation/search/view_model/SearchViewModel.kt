@@ -9,6 +9,7 @@ import com.example.simpleweather.domain.use_cases.network.GetCityLocationUseCase
 import com.example.simpleweather.domain.use_cases.storage.DeleteAllHistoryItemsUseCase
 import com.example.simpleweather.domain.use_cases.storage.GetAllHistoryItemsUseCase
 import com.example.simpleweather.presentation.search.models.SearchStatus
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -24,9 +25,16 @@ class SearchViewModel(
     private val _searchState = MutableLiveData<SearchStatus>()
     val searchState: LiveData<SearchStatus> = _searchState
 
+    private val _isSplashLoading = MutableLiveData(true)
+    val isSplashLoading: LiveData<Boolean> = _isSplashLoading
+
     init {
 
        viewModelScope.launch {
+
+           delay(1000L)
+           _isSplashLoading.value = false
+
            if (getAllHistoryItemsUseCase.execute().isEmpty()){
                _searchState.value = SearchStatus.Intro
            }
