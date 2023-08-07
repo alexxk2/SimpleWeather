@@ -24,6 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
+
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
@@ -50,8 +51,6 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         setRecyclerView()
 
