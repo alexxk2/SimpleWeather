@@ -12,15 +12,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private val viewModel: SearchViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen().apply {
-            setKeepOnScreenCondition{
-                viewModel.isSplashLoading.value!!
-            }
-        }
+        installSplashScreen()
+
         setContentView(R.layout.activity_main)
 
         val navHostFragment = supportFragmentManager

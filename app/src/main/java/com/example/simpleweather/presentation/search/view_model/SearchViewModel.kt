@@ -25,15 +25,9 @@ class SearchViewModel(
     private val _searchState = MutableLiveData<SearchStatus>()
     val searchState: LiveData<SearchStatus> = _searchState
 
-    private val _isSplashLoading = MutableLiveData(true)
-    val isSplashLoading: LiveData<Boolean> = _isSplashLoading
-
     init {
 
        viewModelScope.launch {
-
-           delay(1000L)
-           _isSplashLoading.value = false
 
            if (getAllHistoryItemsUseCase.execute().isEmpty()){
                _searchState.value = SearchStatus.Intro
@@ -84,7 +78,7 @@ class SearchViewModel(
         viewModelScope.launch {
             try {
                 deleteAllHistoryItemsUseCase.execute()
-                _searchState.value = SearchStatus.Done
+                _searchState.value = SearchStatus.Intro
 
             } catch (e: Exception) {
                 _searchState.value = SearchStatus.Error
