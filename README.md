@@ -17,6 +17,9 @@
 + Debounce  
 + Glide
 
+## Gif flow приложения
+
+<img src="https://github.com/alexxk2/SimpleWeather/blob/dev/app/src/main/res/drawable/flow.gif" width="340" height="699" />  <br>
 
 ## Скриншоты основных экранов
 
